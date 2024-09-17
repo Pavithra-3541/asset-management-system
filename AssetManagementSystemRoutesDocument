@@ -1,0 +1,92 @@
+Routes :
+
+
+EMPLOYEES: 
+
+POST : http://localhost:3000/employees
+Input JSON : {
+  "name": "John Doe",
+  "status": "active",
+  "designation": "Developer"
+}
+
+GET: http://localhost:3000/employees
+
+PUT: http://localhost:3000/employees/1
+Input JSON : {
+  "name": "Jane Doe",
+  "status": "Inactive",
+  "designation": "Manager",
+  "assetCategoryId": 2
+}
+
+
+Assets :
+
+POST: http://localhost:3000/assets
+Input JSON: {
+  "serialNumber": "SN123456",
+  "uniqueId": "UID123456",
+  "make": "Dell",
+  "model": "XPS 13",
+  "status": "Available",
+  "assignedEmployeeId": 1,  
+  "assetCategoryId": 1   
+}
+
+PUT: http://localhost:3000/assets/1
+Input JSON: {
+  "serialNumber": "SN123456",
+  "uniqueId": "UID123456",
+  "make": "Dell",
+  "model": "XPS 15",
+  "status": "In Use",
+  "assignedEmployeeId": 2,  
+  "assetCategoryId": 1  
+}
+
+ASSET Categories:
+
+POST: http://localhost:3000/asset-categories
+Input JSON: {
+  "name": "Laptop"
+}
+
+PUT: http://localhost:3000/asset-categories/2
+Input JSON: {
+  "name": "Smartphone"
+}
+
+List of STOCK:
+
+GET: http://localhost:3000/stock
+
+Issue Asset:
+
+POST: http://localhost:3000/issue-asset
+Input JSON: {
+  "assetId": 1,           
+  "employeeId": 1,
+  "issueDate": "2024-09-15"
+}
+
+Retrun Asset:
+
+POST: http://localhost:3000/return-asset
+Input JSON: {
+  "assetId": 1,
+  "employeeId": 2,
+  "reason": "upgrade"
+}
+
+Scrap Asset:
+
+POST: http://localhost:3000/scrap-asset
+Input JSON: {
+  "assetId": 1,
+  "reason": "obsolete"
+}
+
+Asset History
+
+GET: http://localhost:3000/asset-history/1

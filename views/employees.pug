@@ -1,0 +1,22 @@
+doctype html
+html
+  head
+    title Employees
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+  body
+    .container
+      h1 Employees
+      table.table.table-striped
+        thead
+          tr
+            th Name
+            th Status
+            th Designation
+            th Asset Category
+        tbody
+          each employee in employees
+            tr
+              td= employee.name
+              td= employee.status
+              td= employee.designation
+              td= employee.assetCategory ? employee.assetCategory.name : 'N/A'
