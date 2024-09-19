@@ -6,6 +6,7 @@ const path = require('path');
 const basename = path.basename(__filename);
 const env = process.env.NODE_ENV || 'development';
 const config = require(__dirname + '/../config/config.json')[env];
+
 const db = {};
 
 let sequelize;
@@ -15,7 +16,7 @@ if (config.use_env_variable) {
   sequelize = new Sequelize(config.database, config.username, config.password, {
     host: config.host,
     dialect: config.dialect,
-    logging: false  // Disable logging; set to true to enable
+    logging: false  
   });
 }
 
@@ -26,6 +27,12 @@ fs.readdirSync(__dirname)
   .forEach(file => {
     const model = require(path.join(__dirname, file))(sequelize, DataTypes);
     db[model.name] = model;
+  });
+
+  Object.keys(db).forEach(modelName => {
+    if (db[modelName].associate) {
+      db[modelName].associate(db);
+    }
   });
 
 db.sequelize = sequelize;

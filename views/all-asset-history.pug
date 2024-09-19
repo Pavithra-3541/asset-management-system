@@ -1,0 +1,37 @@
+doctype html
+html
+  head
+    title All Asset History
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 All Asset History
+
+      table.table.table-striped
+        thead
+          tr
+            th Asset ID
+            th Asset Name
+            th Employee ID
+            th Employee Name
+            th Issue Date
+            th Return Date
+            th Reason
+        tbody
+          each history in histories
+            tr
+              td #{history.assetId}
+              td #{history.assetName}
+              td #{history.employeeId}
+              td #{history.employeeName}
+              td #{history.issueDate}
+              td #{history.returnDate}
+              td #{history.reason}
+
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+    script(src='https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js')
+    script.
+      $(document).ready(function() {
+        $('.table').DataTable(); // Initialize DataTables
+      });

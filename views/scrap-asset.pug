@@ -1,0 +1,48 @@
+doctype html
+html
+  head
+    title Scrap Asset
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Scrap Asset
+
+      // Check for the success message
+      if query && query.success
+        .alert.alert-success Asset has been successfully scrapped!
+
+      form(action='/scrap-asset' method='POST')
+        .form-group
+          label(for='assetId') Asset
+          select.form-control(name='assetId' id='assetId' required)
+            option(value='') Select an asset
+        .form-group
+          label(for='reason') Reason
+          input.form-control(type='text' name='reason' id='reason' required)
+        button.btn.btn-primary(type='submit') Scrap Asset
+
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+    script(src='https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js')
+    script.
+      $(document).ready(function() {
+        // Populate assets dropdown by parsing HTML
+        $.get('/asset-categories', function(data) {
+          var assetSelect = $('#assetId');
+          assetSelect.empty(); // Clear existing options
+          assetSelect.append($('<option>', { value: '', text: 'Select an asset' })); // Default option
+          
+          // Assuming the data is returned as a table, parse it
+          var html = $(data);
+          html.find('table tbody tr').each(function() {
+            var assetId = $(this).find('td').eq(0).text();  // Adjust based on the table structure
+            var assetName = $(this).find('td').eq(1).text();  // Adjust based on the table structure
+            assetSelect.append($('<option>', {
+              value: assetId,
+              text: assetName
+            }));
+          });
+        }).fail(function() {
+          alert('Failed to fetch assets.');
+        });
+      });

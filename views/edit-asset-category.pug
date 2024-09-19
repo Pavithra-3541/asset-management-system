@@ -1,0 +1,13 @@
+doctype html
+html
+  head
+    title Edit Asset Category
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Edit Asset Category
+      form(action=`/asset-categories/edit/${assetCategory.id}` method='POST')
+        .form-group
+          label(for='name') Name
+          input.form-control(type='text' name='name' value=assetCategory.name required)
+        button.btn.btn-primary(type='submit') Update Asset Category

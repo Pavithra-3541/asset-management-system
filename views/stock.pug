@@ -1,0 +1,39 @@
+doctype html
+html
+  head
+    title Stock Overview
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+    script(src='https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')
+    script(src='https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js')
+    link(rel='stylesheet' href='https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css')
+    style
+      | table.dataTable thead th, table.dataTable tfoot th { padding: 10px; }
+  body
+    .container
+      h1 Stock Overview
+      table.table.table-striped#stockTable
+        thead
+          tr
+            th ID
+            th Serial Number
+            th Unique ID
+            th Make
+            th Model
+            th Status
+            th Assigned Employee
+            th Category
+        tbody
+          each asset in assets
+            tr
+              td= asset.id
+              td= asset.serialNumber
+              td= asset.uniqueId
+              td= asset.make
+              td= asset.model
+              td= asset.status
+              td= asset.assignedEmployeeId || 'N/A'
+              td= asset.assetCategoryId || 'N/A'
+      script.
+        $(document).ready(function() {
+          $('#stockTable').DataTable();
+        });

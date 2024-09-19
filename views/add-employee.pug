@@ -1,0 +1,21 @@
+doctype html
+html
+  head
+    title Add New Employee
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Add New Employee
+      form(action='/employees' method='POST')
+        .form-group
+          label(for='name') Name
+          input.form-control(type='text' name='name' required)
+        .form-group
+          label(for='designation') Designation
+          input.form-control(type='text' name='designation' required)
+        .form-group
+          label(for='status') Status
+          select.form-control(name='status' required)
+            option(value='Active') Active
+            option(value='Inactive') Inactive
+        button.btn.btn-primary(type='submit') Add Employee

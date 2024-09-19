@@ -1,0 +1,31 @@
+// In views/issue-asset.pug
+doctype html
+html
+  head
+    title Issue Asset
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Issue Asset
+      form(action='/issue-asset' method='POST')
+        .form-group
+          label(for='assetId') Asset
+          select.form-control(name='assetId' id='assetId' required)
+            option(value='') Select an asset
+        // other form fields...
+    script(src='https://code.jquery.com/jquery-3.6.0.min.js')
+    script.
+      $(document).ready(function() {
+        $.get('/assets', function(data) {
+          var assetSelect = $('#assetId');
+          assetSelect.empty(); // Clear existing options
+          data.forEach(function(asset) {
+            assetSelect.append($('<option>', {
+              value: asset.id,
+              text: asset.make + ' ' + asset.model // Adjust based on asset fields
+            }));
+          });
+        }).fail(function() {
+          console.error('Failed to fetch assets.');
+        });
+      });

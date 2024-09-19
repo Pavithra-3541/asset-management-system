@@ -1,0 +1,42 @@
+doctype html
+html
+  head
+    title Assets
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+    script(src='https://code.jquery.com/jquery-3.5.1.min.js')
+    script(src='https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js')
+    link(rel='stylesheet' href='https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css')
+    script(src='https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js')
+    link(rel='stylesheet' href='https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css')
+  body
+    .container
+      h1 Asset List
+      a.btn.btn-primary(href='/assets/add') Add New Asset
+      table#assetTable.table.table-striped
+        thead
+          tr
+            th Serial Number
+            th Unique ID
+            th Make
+            th Model
+            th Status
+            th Assigned Employee
+            th Category
+            th Actions
+        tbody
+          each asset in assets
+            tr
+              td= asset.serialNumber
+              td= asset.uniqueId
+              td= asset.make
+              td= asset.model
+              td= asset.status
+              td= asset.assignedEmployee ? asset.assignedEmployee.name : 'N/A'
+              td= asset.assetCategory ? asset.assetCategory.name : 'N/A'
+              td
+                a.btn.btn-info(href=`/assets/edit/${asset.id}`) Edit
+                a.btn.btn-danger(href=`/assets/delete/${asset.id}`) Delete
+      script.
+        $(document).ready(function() {
+          $('#assetTable').DataTable();
+        });

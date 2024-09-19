@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title Edit Asset
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Edit Asset
+      form(action=`/assets/edit/${asset.id}` method='POST')
+        .form-group
+          label(for='serialNumber') Serial Number
+          input.form-control(type='text' name='serialNumber' value=asset.serialNumber required)
+        .form-group
+          label(for='uniqueId') Unique ID
+          input.form-control(type='text' name='uniqueId' value=asset.uniqueId required)
+        .form-group
+          label(for='make') Make
+          input.form-control(type='text' name='make' value=asset.make required)
+        .form-group
+          label(for='model') Model
+          input.form-control(type='text' name='model' value=asset.model required)
+        .form-group
+          label(for='status') Status
+          select.form-control(name='status' required)
+            option(value='Available' selected=asset.status==='Available') Available
+            option(value='Assigned' selected=asset.status==='Assigned') Assigned
+            option(value='Scrapped' selected=asset.status==='Scrapped') Scrapped
+        .form-group
+          label(for='assignedEmployeeId') Assigned Employee
+          select.form-control(name='assignedEmployeeId')
+            option(value='') Select Employee
+            each employee in employees
+              option(value=employee.id selected=employee.id === asset.assignedEmployeeId)= employee.name
+        .form-group
+          label(for='assetCategoryId') Asset Category
+          select.form-control(name='assetCategoryId')
+            option(value='') Select Category
+            each category in assetCategories
+              option(value=category.id selected=category.id === asset.assetCategoryId)= category.name
+        button.btn.btn-primary(type='submit') Update Asset

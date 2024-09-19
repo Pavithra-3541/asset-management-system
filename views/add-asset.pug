@@ -1,0 +1,40 @@
+doctype html
+html
+  head
+    title Add Asset
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Add New Asset
+      form(action='/assets' method='POST')
+        .form-group
+          label(for='serialNumber') Serial Number
+          input.form-control(type='text' name='serialNumber' required)
+        .form-group
+          label(for='uniqueId') Unique ID
+          input.form-control(type='text' name='uniqueId' required)
+        .form-group
+          label(for='make') Make
+          input.form-control(type='text' name='make' required)
+        .form-group
+          label(for='model') Model
+          input.form-control(type='text' name='model' required)
+        .form-group
+          label(for='status') Status
+          select.form-control(name='status' required)
+            option(value='Available') Available
+            option(value='Assigned') Assigned
+            option(value='Scrapped') Scrapped
+        .form-group
+          label(for='assignedEmployeeId') Assigned Employee
+          select.form-control(name='assignedEmployeeId')
+            option(value='') Select Employee
+            each employee in employees
+              option(value=employee.id)= employee.name
+        .form-group
+          label(for='assetCategoryId') Asset Category
+          select.form-control(name='assetCategoryId')
+            option(value='') Select Category
+            each category in assetCategories
+              option(value=category.id)= category.name
+        button.btn.btn-primary(type='submit') Add Asset

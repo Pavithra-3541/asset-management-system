@@ -4,13 +4,8 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Employee extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+
     static associate(models) {
-      // Define association here
       Employee.belongsTo(models.AssetCategory, { foreignKey: 'assetCategoryId' });
     }
   }
@@ -21,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     assetCategoryId: {
       type: DataTypes.INTEGER,
       references: {
-        model: 'AssetCategories', // The table name in the database
-        key: 'id' // The primary key in the AssetCategory model
+        model: 'AssetCategories', 
+        key: 'id' 
       }
     }
   }, {
@@ -31,3 +26,4 @@ module.exports = (sequelize, DataTypes) => {
   });
   return Employee;
 };
+

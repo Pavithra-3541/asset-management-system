@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title Asset Categories
+    link(rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css')
+  body
+    .container
+      h1 Asset Categories
+      a.btn.btn-primary(href='/asset-categories/new') Add New Asset Category
+      table.table.table-striped
+        thead
+          tr
+            th ID
+            th Name
+            th Actions
+        tbody
+          each category in assetCategories
+            tr
+              td= category.id
+              td= category.name
+              td
+                a.btn.btn-warning(href=`/asset-categories/edit/${category.id}`) Edit
+                form(action=`/asset-categories/${category.id}/delete` method='POST' style='display:inline')
+                  button.btn.btn-danger(type='submit') Delete

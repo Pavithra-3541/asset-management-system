@@ -1,0 +1,24 @@
+doctype html
+html
+  head
+    title= employee ? 'Edit Employee' : 'Add Employee'
+    link(rel='stylesheet', href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css')
+  body
+    h1= employee ? 'Edit Employee' : 'Add Employee'
+    form(action=employee ? `/employees/${employee.id}?_method=PUT` : '/employees' method='POST')
+      .form-group
+        label(for='name') Name
+        input.form-control(type='text' name='name' id='name' value=employee ? employee.name : '')
+      .form-group
+        label(for='status') Status
+        input.form-control(type='text' name='status' id='status' value=employee ? employee.status : '')
+      .form-group
+        label(for='designation') Designation
+        input.form-control(type='text' name='designation' id='designation' value=employee ? employee.designation : '')
+      .form-group
+        label(for='assetCategoryId') Asset Category
+        select.form-control(name='assetCategoryId' id='assetCategoryId')
+          option(value='') Select Category
+          each category in assetCategories
+            option(value=category.id selected=employee && employee.assetCategoryId === category.id)= category.name
+      button.btn.btn-primary(type='submit')= employee ? 'Update' : 'Add'

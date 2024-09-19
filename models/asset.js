@@ -10,7 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     }, {});
   
     Asset.associate = function(models) {
-      // Define associations here
       Asset.belongsTo(models.Employee, { foreignKey: 'assignedEmployeeId' });
       Asset.belongsTo(models.AssetCategory, { foreignKey: 'assetCategoryId' });
       Asset.hasMany(models.AssetHistory, { foreignKey: 'assetId' });
@@ -18,4 +17,6 @@ module.exports = (sequelize, DataTypes) => {
   
     return Asset;
   };
+
+  
   
