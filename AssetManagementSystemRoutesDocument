@@ -1,63 +1,41 @@
 Routes :
 
 
-EMPLOYEES: 
 
-POST : http://localhost:3000/employees
-Input JSON : {
-  "name": "John Doe",
-  "status": "active",
-  "designation": "Developer"
-}
+ASSET Categories:
 
-GET: http://localhost:3000/employees
+ http://localhost:3000/asset-categories
 
 
 
 Assets :
 
-POST: http://localhost:3000/assets
-Input JSON: {
-  "serialNumber": "SN123456",
-  "uniqueId": "UID123456",
-  "make": "Dell",
-  "model": "XPS 13",
-  "status": "Available",
-  "assignedEmployeeId": 1,  
-  "assetCategoryId": 1   
-}
+ http://localhost:3000/assets
 
 
-ASSET Categories:
 
-POST: http://localhost:3000/asset-categories
-Input JSON: {
-  "name": "Laptop"
-}
+
+EMPLOYEES: 
+
+ http://localhost:3000/employees
+
+
 
 
 List of STOCK:
 
-GET: http://localhost:3000/stock
+ http://localhost:3000/stock
 
 
 Retrun Asset:
 
-POST: http://localhost:3000/return-asset
-Input JSON: {
-  "assetId": 1,
-  "employeeId": 2,
-  "reason": "upgrade"
-}
+ http://localhost:3000/return-asset
+
 
 Scrap Asset:
 
-POST: http://localhost:3000/scrap-asset
-Input JSON: {
-  "assetId": 1,
-  "reason": "obsolete"
-}
+http://localhost:3000/scrap-asset
 
 Asset History
 
-GET: http://localhost:3000/asset-history/all-asset-history
+ http://localhost:3000/asset-history/all-asset-history
